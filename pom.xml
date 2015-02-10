@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.ciheul</groupId>
+  <artifactId>dummy-server</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>dummy-server</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jposEeVersion>2.0.6-SNAPSHOT</jposEeVersion>
+  </properties>
+
+	<repositories>
+		<repository>
+			<id>org.jpos</id>
+			<url>http://jpos.org/maven</url>
+		</repository>
+	</repositories>
+  <dependencies>
+		<!-- jpos -->
+		<dependency>
+			<groupId>org.jpos</groupId>
+			<artifactId>jpos</artifactId>
+			<version>1.9.9-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jpos.ee</groupId>
+			<artifactId>jposee-core</artifactId>
+			<version>${jposEeVersion}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jpos.ee</groupId>
+			<artifactId>jposee-jetty</artifactId>
+			<version>${jposEeVersion}</version>
+		</dependency>
+		<!-- java ee -->
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.5.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1100-jdbc4</version>
+		</dependency>
+ 		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>7.0.55</version>
+		</dependency>
+  
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.5.1</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+	    <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+	    </dependency>
+  </dependencies>
+</project>
