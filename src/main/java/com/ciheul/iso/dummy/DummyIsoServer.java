@@ -200,7 +200,7 @@ public class DummyIsoServer implements ISORequestListener {
         System.out.println("sendInquiryPrepaid");
         try {
             m.setResponseMTI();
-            m.set(39, "68");
+            m.set(39, "00");
             m.set(48,
                     "211112345673221131234561111 0AZHAR WAHYU' S.T,M-T     R1  000002200DCSUNITSUPHONE123     1000000000000000000000000000KGIM9AVVVVVVVVVVWXXVWZWXW4W0V3W0V00KF0000130217XCJF0PE001384    0PVENDINGR000000000002000002002220000030033200000400442000555005520000666006661000055550012349874235472358811058Informasi hubungi call center 123 atau hub.PLN terdekat : ");
 
