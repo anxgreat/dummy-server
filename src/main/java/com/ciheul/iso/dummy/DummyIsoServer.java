@@ -25,7 +25,7 @@ public class DummyIsoServer implements ISORequestListener {
     private static int SUCCESS = 0;
     private static int FAIL = -1;
 
-    private static int ADVICE_STATUS = FAIL;
+    private static int ADVICE_STATUS = SUCCESS;
 
     public DummyIsoServer() {
         super();
@@ -143,7 +143,7 @@ public class DummyIsoServer implements ISORequestListener {
         // } catch (InterruptedException ex) {
         // Thread.currentThread().interrupt();
         // }
-        ISOUtil.sleep(10000);
+//    	ISOUtil.sleep(15000);
         System.out.println("sendInquiryPostpaid");
         try {
             m.setResponseMTI();
@@ -200,7 +200,7 @@ public class DummyIsoServer implements ISORequestListener {
         System.out.println("sendInquiryPrepaid");
         try {
             m.setResponseMTI();
-            m.set(39, "00");
+            m.set(39, "91");
             m.set(48,
                     "211112345673221131234561111 0AZHAR WAHYU' S.T,M-T     R1  000002200DCSUNITSUPHONE123     1000000000000000000000000000KGIM9AVVVVVVVVVVWXXVWZWXW4W0V3W0V00KF0000130217XCJF0PE001384    0PVENDINGR000000000002000002002220000030033200000400442000555005520000666006661000055550012349874235472358811058Informasi hubungi call center 123 atau hub.PLN terdekat : ");
 
@@ -282,7 +282,6 @@ public class DummyIsoServer implements ISORequestListener {
      */
     private void sendAdvice(ISOSource source, ISOMsg m) {
         try {
-            ISOUtil.sleep(5000);
             m.setResponseMTI();
             if (ADVICE_STATUS == SUCCESS) {
                 m.set(39, "00");
@@ -310,10 +309,9 @@ public class DummyIsoServer implements ISORequestListener {
      */
     public boolean process(ISOSource source, ISOMsg m) {
         System.out.println("ROUTING MESSAGE");
-        ISOUtil.sleep(1000);
+//        ISOUtil.sleep(1000);
 
         try {
-            String bit48 = m.getValue(48).toString();
 
             // echo test
             if (m.getMTI().equals(ECHO_REQ)) {
@@ -329,16 +327,18 @@ public class DummyIsoServer implements ISORequestListener {
 
             // reversal
             if (m.getMTI().equals(REV_REQ)) {
-//                sendReversal(source, m);
+                sendReversal(source, m);
                 return true;
             }
 
             // transaction
             if (m.getMTI().equals(TRX_REQ)) {
+                String bit48 = m.getValue(48).toString();
                 System.out.println("transaction");
                 // postpaid
                 if (m.getValue(48).toString().substring(0, 4).equals("2112")) {
                     // inquiry
+//                	ISOUtil.sleep(60000);
                     if (m.getValue(3).toString().equals("380000")) {
                         sendInquiryPostpaid(source, m);
                         return true;
@@ -367,7 +367,7 @@ public class DummyIsoServer implements ISORequestListener {
                     // payment
                     if (m.getValue(3).toString().equals("180000") && bit48.substring(bit48.length() - 1).equals("P")) {
                         System.out.println("sendPaymentPrepaid");
-                        sendPaymentPrepaid(source, m);
+//                        sendPaymentPrepaid(source, m);
                         return true;
                     }
 
@@ -383,7 +383,7 @@ public class DummyIsoServer implements ISORequestListener {
                 if (m.getValue(48).toString().substring(0, 4).equals("2114")) {
 
                     if (m.getValue(3).toString().equals("380000")) {
-                        sendInquiryNontaglis(source, m);
+//                        sendInquiryNontaglis(source, m);
                         return true;
                     }
 
